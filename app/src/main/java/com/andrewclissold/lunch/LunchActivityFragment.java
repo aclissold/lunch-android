@@ -52,6 +52,11 @@ public class LunchActivityFragment extends Fragment {
                     mAdapter.add(mEditText.getText().toString());
                     mAdapter.notifyDataSetChanged();
                     v.setText("");
+                    int position = mAdapter.getItemCount()-1;
+                    if (position < 0) {
+                        position = 0;
+                    }
+                    mRecyclerView.smoothScrollToPosition(position);
                     return true;
                 }
                 return false;
