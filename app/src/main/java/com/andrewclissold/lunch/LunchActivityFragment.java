@@ -51,6 +51,7 @@ public class LunchActivityFragment extends Fragment {
                     && event.getAction() == KeyEvent.ACTION_DOWN) {
                     mAdapter.add(mEditText.getText().toString());
                     mAdapter.notifyDataSetChanged();
+                    v.setText("");
                     return true;
                 }
                 return false;
