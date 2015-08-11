@@ -1,17 +1,19 @@
 package com.andrewclissold.lunch;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by aclissold on 7/28/15.
  */
 public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder> {
-    private String[] mDataset;
+    private ArrayList<String> mDataset;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -21,8 +23,12 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder> 
         }
     }
 
-    public LunchAdapter(String[] lunchDataset) {
-        mDataset = lunchDataset;
+    public void add(String newItem) {
+        mDataset.add(newItem);
+    }
+
+    public LunchAdapter(List<String> lunchDataset) {
+        mDataset = new ArrayList<>(lunchDataset);
     }
 
     @Override
@@ -34,11 +40,11 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset[position]);
+        holder.mTextView.setText(mDataset.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }

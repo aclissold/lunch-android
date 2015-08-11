@@ -12,6 +12,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * A placeholder fragment containing a simple view.
@@ -19,7 +22,7 @@ import android.widget.TextView;
 public class LunchActivityFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private LunchAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private EditText mEditText;
 
@@ -36,7 +39,7 @@ public class LunchActivityFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        String[] lunchDataset = {"hello", "world"};
+        List<String> lunchDataset = Arrays.asList(new String[]{"hello", "world"});
         mAdapter = new LunchAdapter(lunchDataset);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -46,6 +49,8 @@ public class LunchActivityFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_NULL
                     && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    mAdapter.add(mEditText.getText().toString());
+                    mAdapter.notifyDataSetChanged();
                     return true;
                 }
                 return false;
