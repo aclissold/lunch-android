@@ -4,9 +4,16 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -15,8 +22,9 @@ import android.view.ViewGroup;
 public class LunchActivityFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private LunchAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private EditText mEditText;
 
     public LunchActivityFragment() {
     }
@@ -31,9 +39,29 @@ public class LunchActivityFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        String[] lunchDataset = {"hello", "world"};
+        List<String> lunchDataset = Arrays.asList(new String[]{"hello", "world"});
         mAdapter = new LunchAdapter(lunchDataset);
         mRecyclerView.setAdapter(mAdapter);
+
+        mEditText = (EditText) rootView.findViewById(R.id.editText);
+        mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_NULL
+                    && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    mAdapter.add(mEditText.getText().toString());
+                    mAdapter.notifyDataSetChanged();
+                    v.setText("");
+                    int position = mAdapter.getItemCount()-1;
+                    if (position < 0) {
+                        position = 0;
+                    }
+                    mRecyclerView.smoothScrollToPosition(position);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         return rootView;
     }
