@@ -12,7 +12,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:hint="@string/add_eatery"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/eatery_recycler_view"
