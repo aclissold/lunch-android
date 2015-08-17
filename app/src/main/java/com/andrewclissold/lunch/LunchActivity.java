@@ -2,8 +2,8 @@ package com.andrewclissold.lunch;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import com.parse.Parse;
 
 
 public class LunchActivity extends Activity {
@@ -12,6 +12,9 @@ public class LunchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lunch);
+
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, BuildConfig.LUNCH_APPLICATION_ID, BuildConfig.LUNCH_CLIENT_KEY);
     }
 
 }
