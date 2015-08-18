@@ -27,8 +27,8 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder> 
         mDataset.add(newItem);
     }
 
-    public LunchAdapter(List<String> lunchDataset) {
-        mDataset = new ArrayList<>(lunchDataset);
+    public LunchAdapter() {
+        mDataset = new ArrayList<>();
     }
 
     @Override
