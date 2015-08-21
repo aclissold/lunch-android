@@ -81,7 +81,7 @@ public class LunchActivityFragment extends Fragment {
 
     private void getEateriesInBackground() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Eateries");
-        query.orderByDescending("updatedAt");
+        query.orderByDescending("vote");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
