@@ -64,7 +64,15 @@ public class LunchActivityFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_NULL
                         && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    mAdapter.add(mEditText.getText().toString());
+                    String place = mEditText.getText().toString();
+
+                    ParseObject eateryObject = new ParseObject("Eateries");
+                    eateryObject.put("place", place);
+                    eateryObject.put("vote", 0);
+                    eateryObject.put("isPushed", false);
+                    eateryObject.saveEventually();
+
+                    mAdapter.add(place);
                     mAdapter.notifyDataSetChanged();
                     v.setText("");
                     int position = mAdapter.getItemCount() - 1;
