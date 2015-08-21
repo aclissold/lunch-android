@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.andrewclissold.lunch.model.Eatery;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -66,11 +67,11 @@ public class LunchActivityFragment extends Fragment {
                         && event.getAction() == KeyEvent.ACTION_DOWN) {
                     String place = mEditText.getText().toString();
 
-                    ParseObject eateryObject = new ParseObject("Eateries");
-                    eateryObject.put("place", place);
-                    eateryObject.put("vote", 0);
-                    eateryObject.put("isPushed", false);
-                    eateryObject.saveEventually();
+                    Eatery eatery = new Eatery();
+                    eatery.setPlace(place);
+                    eatery.setVotes(0);
+                    eatery.setPushed(false);
+                    eatery.saveEventually();
 
                     mAdapter.add(place);
                     mAdapter.notifyDataSetChanged();
