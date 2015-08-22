@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by aclissold on 7/28/15.
+ * Created by Andrew Clissold on 7/28/15.
  */
 public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder> {
     private ArrayList<String> mDataset;
@@ -27,8 +27,8 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.ViewHolder> 
         mDataset.add(newItem);
     }
 
-    public LunchAdapter(List<String> lunchDataset) {
-        mDataset = new ArrayList<>(lunchDataset);
+    public LunchAdapter() {
+        mDataset = new ArrayList<>();
     }
 
     @Override
